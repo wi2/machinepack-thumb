@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Easy Generate thumb file with ImageMagick native",
   "scripts": {
-    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+    "test": "mocha tests/test.js"
   },
   "keywords": [
     "Thumb",
