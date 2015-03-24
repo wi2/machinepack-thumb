@@ -1,0 +1,38 @@
+{
+  "name": "machinepack-thumb",
+  "version": "0.1.0",
+  "description": "Easy Generate thumb file with ImageMagick native",
+  "scripts": {
+    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+  },
+  "keywords": [
+    "Thumb",
+    "machines",
+    "machinepack"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "imagemagick-native": "^1.7.0",
+    "isstream": "^0.1.2",
+    "machine": "^3.0.0"
+  },
+  "devDependencies": {
+    "should": "^5.2.0",
+    "test-machinepack-mocha": "^0.2.2"
+  },
+  "machinepack": {
+    "friendlyName": "Thumb",
+    "machineDir": "machines/",
+    "machines": [
+      "read",
+      "write",
+      "to"
+    ],
+    "testsUrl": "https://travis-ci.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wi2/machinepack-thumb.git"
+  }
+}
