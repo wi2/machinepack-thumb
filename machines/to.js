@@ -81,8 +81,11 @@ module.exports = {
       stream = helper.read(inputs.source)
         .pipe( helper.convert(inputs) )
 
-    } else if (inputs.destination) { // Not working (help is welcome)
-      stream = helper.convert(inputs)
+    } else if (inputs.destination) {
+      stream = process.stdin
+        .pipe( helper.convert(inputs) );
+      //need to separate this pipe for working.
+      stream
         .pipe( helper.write(inputs.destination) )
         .on('close', inputs.done);
 

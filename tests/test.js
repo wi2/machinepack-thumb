@@ -26,7 +26,7 @@ describe('Array', function(){
 
     });
 
-    it('without source path, NOT WORKING(no resize, no blur), should be done', function(done){
+    it('without source path, should be done', function(done){
 
       var input = thumb.read({source: "samples/test.jpg"}).execSync();
       input
