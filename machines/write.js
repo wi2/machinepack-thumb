@@ -36,6 +36,4 @@ module.exports = {
     return exits.success( helper.write(inputs.destination) );
   },
 
-
-
 };

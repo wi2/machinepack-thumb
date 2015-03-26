@@ -15,6 +15,29 @@ describe('Array', function(){
 
     });
 
+    it('blur and resize, should be done', function(done){
+      thumb.multiple({
+        source:'samples/test.jpg',
+        schema: [{
+          name: 'large',
+          size: '240x240'
+        }, {
+          name: 'medium',
+          size: '180x160'
+        }, {
+          name: 'small',
+          size: '120x120'
+        }, {
+          name: 'thumb',
+          size: '50x50'
+        }],
+        done: done
+      }).execSync();
+
+    });
+
+
+
 
     it('just resize with size input, should be done', function(done){
       thumb.to({

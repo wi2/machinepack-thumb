@@ -65,12 +65,6 @@ module.exports = {
     var helper = require("../lib/helper.js")
       , stream;
 
-    if (inputs.size) {
-      var s = inputs.size.split('x');
-      inputs.width = s[0];
-      inputs.height = s[1];
-    }
-
     if (inputs.source && inputs.destination) {
       stream = helper.read(inputs.source)
         .pipe( helper.convert(inputs) )
@@ -91,7 +85,7 @@ module.exports = {
 
     }
 
-    return exits.success( stream||helper.convert(inputs));
+    return exits.success( stream||helper.convert(inputs) );
   },
 
 };
