@@ -3,7 +3,7 @@ module.exports = {
 
   friendlyName: 'To',
   description: 'Transform an convert image (PNG, JPG) with crop, resize, blur, rotate, flip, ...',
-  extendedDescription: 'Base on : https://github.com/mash/node-imagemagick-native',
+  extendedDescription: 'Base on : https://github.com/mash/node-imagemagick-native. See Test file example (npm test)',
 
   sync: true,
 
@@ -40,14 +40,14 @@ module.exports = {
     },
     done: {
       typeclass: "*",
-      description: "a callback after writing, obligatory if destination's input",
+      description: "a callback after writing",
       required: false
     },
     quality: {
       example: 2,
       description: 'a number (1-100)',
       required: false
-    },
+    }
   },
 
   defaultExit: 'success',
@@ -55,9 +55,6 @@ module.exports = {
   exits: {
     error: {
       description: 'Unexpected error occurred.',
-    },
-    warningTodo: {
-      description: "TODO, help is welcome. Actually you need the source and the destination, not just source or just destination"
     },
     success: {
       description: 'Done.',
@@ -74,22 +71,24 @@ module.exports = {
       inputs.height = s[1];
     }
 
-    if (inputs.source || inputs.destination) {
-      if (inputs.source && inputs.destination) {
-        var streamDest = helper.write(inputs.destination);
-        streamDest.on('close',inputs.done);
-        stream = helper.read(inputs.source)
-          .pipe( helper.convert(inputs) )
-          .pipe( streamDest );
+    if (inputs.source && inputs.destination) {
+      stream = helper.read(inputs.source)
+        .pipe( helper.convert(inputs) )
+        .pipe( helper.write(inputs.destination) )
+        .on('close', inputs.done);
 
-      } else {
-        //todo
-        return exits.warningTodo();
-      }
+    } else if (inputs.source) {
+      stream = helper.read(inputs.source)
+        .pipe( helper.convert(inputs) )
+
+    } else if (inputs.destination) { // Not working (help is welcome)
+      stream = helper.convert(inputs)
+        .pipe( helper.write(inputs.destination) )
+        .on('close', inputs.done);
+
     }
 
-    // return exits.success();
-    return exits.success( stream||helper.convert(inputs) );
+    return exits.success( stream||helper.convert(inputs));
   },
 
 };

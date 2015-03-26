@@ -33,10 +33,7 @@ module.exports = {
   fn: function (inputs,exits) {
     var helper = require('../lib/helper.js');
 
-    var streamDest = helper.write(inputs.destination);
-    streamDest.on('close',inputs.done);
-
-    return exits.success( streamDest );
+    return exits.success( helper.write(inputs.destination) );
   },
 
 
